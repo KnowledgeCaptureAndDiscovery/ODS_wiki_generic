@@ -1,4 +1,4 @@
-FROM php:7.2.24-apache
+FROM php:7.0.33-apache
 RUN a2enmod rewrite
 COPY 000-default.conf /etc/apache2/sites-available/
 
@@ -19,7 +19,7 @@ RUN docker-php-ext-install -j$(nproc) gd
 RUN docker-php-ext-install mysqli mbstring opcache exif pdo_mysql 
 #calendar wddx sysvmsg sysvsem sysvshm sockets shmop pcntl gettext
 RUN docker-php-ext-configure opcache --enable-opcache
-RUN pecl install apcu && docker-php-ext-enable apcu
+#RUN pecl install apcu && docker-php-ext-enable apcu
 
 ADD custom_wiki.tar.gz /var/www/html/
 COPY LocalSettings.php /var/www/html/
