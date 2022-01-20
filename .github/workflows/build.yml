@@ -24,11 +24,11 @@ jobs:
 
     - name: Build wiki image
       run: |
-        docker build  ./wiki -f Dockerfile  --tag ${IMAGE_NAME_WIKI}
+        docker build  ./wiki   --tag ${IMAGE_NAME_WIKI}
     
     - name: Build database image
       run: |
-        docker build ./database -f Dockerfile . --tag ${IMAGE_NAME_DATABASE}
+        docker build ./database --tag ${IMAGE_NAME_DATABASE}
     
     - name: Login to DockerHub
       uses: docker/login-action@v1
