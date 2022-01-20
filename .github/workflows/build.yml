@@ -1,5 +1,4 @@
 name: build
-description: Build the docker image and push them to docker hub
 
 on:
   push:
