@@ -4,17 +4,21 @@
 version: '3'
 services:
   database:
+    image: ikcap/disk_database
     build:
-      context: ./enigma-db/
+      context: ./database/
       dockerfile: Dockerfile
     restart: always
   mediawiki:
+    image: ikcap/disk_wiki
     build:
-      context: ./enigma-wiki/
+      context: ./wiki/
       dockerfile: Dockerfile
     restart: always
     ports:
       - 8080:80
+    depends_on:
+      - database
     links:
       - database
       #- fuseki
