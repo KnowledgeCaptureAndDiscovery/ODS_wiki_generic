@@ -15,11 +15,15 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
+function loadenv($envName, $default = "") {
+    return getenv($envName) ? getenv($envName) : $default;
+}
+
 ## Uncomment this to disable output compression
 # $wgDisableOutputCompression = true;
+$wgSitename = loadenv('MEDIAWIKI_SITE_NAME', 'MediaWiki');
+$customName = loadenv('MEDIAWIKI_CUSTOM_NAME', "mediawiki"); 
 
-$wgSitename = "Enigma wiki";
-$customName = "enigma_dev";
 
 # Virtual path. This directory MUST be different from the one used in $wgScriptPath
 $wgArticlePath = "/$customName/$1";    
@@ -39,26 +43,27 @@ $wgResourceBasePath = $wgScriptPath;
 ## The URL path to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
 #$wgLogo = "$wgResourceBasePath/resources/assets/wiki.png";
-$wgLogo = "$wgScriptPath/enigmaLogoSmall.png";
+$wgLogo = loadenv('MEDIAWIKI_LOGO', "$wgResourceBasePath/resources/assets/wiki.png");
 
 ## UPO means: this is also a user preference option
 
 $wgEnableEmail = true;
 $wgEnableUserEmail = true; # UPO
 
-$wgEmergencyContact = "apache@localhost";
-$wgPasswordSender = "apache@localhost";
+
+$wgEmergencyContact = loadenv('MEDIAWIKI_EMERGENCY_CONTACT', "apache@localhost");
+$wgPasswordSender = loadenv('MEDIAWIKI_PASSWORD_SENDER', "apache@localhost");
 
 $wgEnotifUserTalk = false; # UPO
 $wgEnotifWatchlist = false; # UPO
 $wgEmailAuthentication = true;
 
 ## Database settings
-$wgDBtype = "mysql";
-$wgDBserver = "database";
-$wgDBname = "enigma_wiki";
-$wgDBuser = "enigma";
-$wgDBpassword = "enigma123";
+$wgDBtype = loadenv('MEDIAWIKI_DB_TYPE', "mysql");
+$wgDBserver = loadenv('MEDIAWIKI_DB_HOST', "db");
+$wgDBname = loadenv('MEDIAWIKI_DB_NAME', "mediawiki");
+$wgDBuser = loadenv('MEDIAWIKI_DB_USER', "root");
+$wgDBpassword = loadenv('MEDIAWIKI_DB_PASSWORD', "mediawikipass");
 
 # MySQL specific settings
 $wgDBprefix = "";
@@ -100,7 +105,7 @@ $wgShellLocale = "en_US.utf8";
 # Site language code, should be one of the list in ./languages/data/Names.php
 $wgLanguageCode = "en";
 
-$wgSecretKey = "a1270a8941291361817a55a8df880210dd2e3b07ecee57deff2db0559d276a9d";
+$wgSecretKey = loadenv('MEDIAWIKI_SECRET_KEY', null);
 
 # Changing this will log out all existing sessions.
 $wgAuthenticationTokenVersion = "1";
@@ -153,8 +158,8 @@ $smwgCacheType = CACHE_NONE;
 
 $smwgDefaultStore = 'SMWSparqlStore';
 $smwgSparqlDatabaseConnector = 'fuseki';
-$smwgSparqlQueryEndpoint = 'http://host.docker.internal:3030/enigma_wiki/query';
-$smwgSparqlUpdateEndpoint = 'http://host.docker.internal:3030/enigma_wiki/update';
+$smwgSparqlQueryEndpoint = loadenv('SPARQL_QUERY_ENDPOINT', "http://host.docker.internal:3030/enigma_wiki/query"); 
+$smwgSparqlUpdateEndpoint = loadenv('SPARQL_UPDATE_ENDPOINT', "http://host.docker.internal:3030/enigma_wiki/update"); 
 $smwgSparqlDataEndpoint = '';
 
 require_once "$IP/extensions/PageObjectModel/PageObjectModel.php";

@@ -1,6 +1,5 @@
 FROM php:7.0.33-apache
 RUN a2enmod rewrite
-COPY 000-default.conf /etc/apache2/sites-available/
 
 RUN apt-get update && apt-get install -y zip unzip git vim imagemagick \
     libfreetype6-dev libjpeg62-turbo-dev libpng-dev libzip-dev zlib1g-dev exiftool \
@@ -17,3 +16,6 @@ COPY LocalSettings.php /var/www/html/
 WORKDIR /var/www/html/
 # Maybe this should be a volume
 RUN chmod -R 777 images/
+
+COPY 000-default.conf /etc/apache2/sites-available/
+RUN sed -e 's/max_execution_time = 30/max_execution_time = 300/' -i  /usr/local/etc/php/php.ini-production

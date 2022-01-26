@@ -9,8 +9,14 @@ services:
       context: ./database/
       dockerfile: Dockerfile
     restart: always
+    env_file:
+      - .env
+    volumes:
+      - mysql:/var/lib/mysql
   mediawiki:
     image: ikcap/disk_wiki
+    env_file:
+      - .env
     build:
       context: ./wiki/
       dockerfile: Dockerfile
@@ -19,11 +25,17 @@ services:
       - 8080:80
     depends_on:
       - database
-    links:
-      - database
-      #- fuseki
-    #volumes:
-      #- /var/www/html/images
-#  fuseki:
-#    image: stain/jena-fuseki
-#    restart: always
+  endpoint:
+    image: ikcap/fuseki_docker:master
+    ports:
+      - 3030:3030
+    volumes:
+      - fuseki_backups:/backups
+      - fuseki_databases:/fuseki-base/databases/
+    env_file:
+      - .env
+volumes:
+  mysql:
+  fuseki_databases:
+  fuseki_backups:
+    
