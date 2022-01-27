@@ -43,7 +43,7 @@ jobs:
         IMAGE_DATABASE_ID=$(echo $IMAGE_DATABASE_ID | tr '[A-Z]' '[a-z]')
         VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
         [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-        [ "$VERSION" == "main" ] && VERSION=latest
+        [ "$VERSION" == "master" ] && VERSION=latest
         docker tag $IMAGE_NAME_DATABASE $IMAGE_DATABASE_ID:$VERSION
         docker push $IMAGE_DATABASE_ID:$VERSION
         docker tag $IMAGE_NAME_DATABASE $IMAGE_DATABASE_ID:$GITHUB_SHA
@@ -55,7 +55,7 @@ jobs:
         IMAGE_WIKI_ID=$(echo $IMAGE_WIKI_ID | tr '[A-Z]' '[a-z]')
         VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
         [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-        [ "$VERSION" == "main" ] && VERSION=latest
+        [ "$VERSION" == "master" ] && VERSION=latest
         docker tag $IMAGE_NAME_WIKI $IMAGE_WIKI_ID:$VERSION
         docker push $IMAGE_WIKI_ID:$VERSION
         docker tag $IMAGE_NAME_WIKI $IMAGE_WIKI_ID:$GITHUB_SHA
