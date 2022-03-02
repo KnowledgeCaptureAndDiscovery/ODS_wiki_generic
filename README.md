@@ -30,3 +30,4 @@ To change the name of the wiki you must edit `LocalSettings.php`:
 ```
 22 $customName = "enigma_dev";
 ```
+
