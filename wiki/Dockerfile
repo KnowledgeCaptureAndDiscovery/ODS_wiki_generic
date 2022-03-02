@@ -18,4 +18,5 @@ WORKDIR /var/www/html/
 RUN chmod -R 777 images/
 
 COPY 000-default.conf /etc/apache2/sites-available/
-RUN sed -e 's/max_execution_time = 30/max_execution_time = 300/' -i  /usr/local/etc/php/php.ini-production
+RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \
+    && sed -e 's/max_execution_time = 30/max_execution_time = 300/' -i  /usr/local/etc/php/php.ini
