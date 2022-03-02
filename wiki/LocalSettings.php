@@ -22,8 +22,8 @@ function loadenv($envName, $default = "") {
 ## Uncomment this to disable output compression
 # $wgDisableOutputCompression = true;
 $wgSitename = loadenv('MEDIAWIKI_SITE_NAME', 'MediaWiki');
-$customName = loadenv('MEDIAWIKI_CUSTOM_NAME', "mediawiki"); 
-
+$customName = loadenv('MEDIAWIKI_CUSTOM_NAME', "wiki"); 
+$hostName = loadenv('MEDIAWIKI_HOST_NAME', "localhost:8080");
 
 # Virtual path. This directory MUST be different from the one used in $wgScriptPath
 $wgArticlePath = "/$customName/$1";    
@@ -149,8 +149,8 @@ $wgGroupPermissions['user']['read'] = true;
 $wgGroupPermissions['user']['suppressredirect'] = true;
 $wgGroupPermissions['user']['createaccount'] = true;
 
-enableSemantics("organicdatapublishing.org/$customName");
-$smwgNamespace = "http://organicdatapublishing.org/$customName/";
+enableSemantics("$hostName/$customName");
+$smwgNamespace = "http://$hostName/$customName/";
 
 $wgEnableParserCache = false;
 $wgCachePages = false;
