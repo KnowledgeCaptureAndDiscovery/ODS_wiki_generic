@@ -41,7 +41,7 @@ jobs:
       with:
         image-ref: ods-wiki
         format: 'sarif'
-        output-dir: 'trivy-results.sarif'
+        output: 'trivy-results.sarif'
         severity: 'CRITICAL,HIGH'
 
 
