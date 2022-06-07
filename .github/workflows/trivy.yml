@@ -39,10 +39,13 @@ jobs:
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results.sarif'
-          severity: 'CRITICAL,HIGH'
-          ignore-unfixed: true
-
+          severity: 'CRITICAL'
+          exit-code: '1'
+          ignore-unfixed: 'true'
+          
       - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v1
+        if: always() 
         with:
           sarif_file: 'trivy-results.sarif'
+          ignore-unfixed: true

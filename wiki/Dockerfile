@@ -1,7 +1,7 @@
 FROM php:7.4-apache
 RUN a2enmod rewrite
 
-RUN apt-get update && apt-get install –-no-install-recommends -y zip unzip git imagemagick \
+RUN apt-get update && apt-get install -y zip unzip git imagemagick \
     libfreetype6-dev libjpeg62-turbo-dev libpng-dev libzip-dev zlib1g-dev exiftool \
     libicu-dev  libonig-dev
 
