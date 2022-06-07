@@ -1,6 +1,7 @@
 {
     "yaml.schemas": {
         "file:///toc.schema.json": "/toc\\.yml/i",
-        "https://json.schemastore.org/github-action.json": "file:///home/mosorio/repos/ODS_wiki/.github/workflows/build.yml"
+        "https://json.schemastore.org/github-action.json": "file:///home/mosorio/repos/ODS_wiki/.github/workflows/build.yml",
+        "https://json.schemastore.org/github-workflow.json": "file:///home/mosorio/repos/disk/ODS_wiki/.github/workflows/build.yml"
     }
 }
