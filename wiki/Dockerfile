@@ -3,7 +3,7 @@ RUN a2enmod rewrite
 
 RUN apt-get update && apt-get install -y zip unzip git vim imagemagick \
     libfreetype6-dev libjpeg62-turbo-dev libpng-dev libzip-dev zlib1g-dev exiftool \
-    libicu-dev
+    libicu-dev  libonig-dev
 
 RUN docker-php-ext-configure intl && docker-php-ext-install intl \
     && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/  \
