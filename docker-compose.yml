@@ -5,9 +5,6 @@ version: '3'
 services:
   database:
     image: ikcap/disk_database
-    build:
-      context: ./database/
-      dockerfile: Dockerfile
     restart: always
     env_file:
       - .env
@@ -17,9 +14,6 @@ services:
     image: ikcap/disk_wiki
     env_file:
       - .env
-    build:
-      context: ./wiki/
-      dockerfile: Dockerfile
     restart: always
     ports:
       - 8080:80
