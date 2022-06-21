@@ -26,15 +26,15 @@ $customName = loadenv('MEDIAWIKI_CUSTOM_NAME', "wiki");
 $hostName = loadenv('MEDIAWIKI_HOST_NAME', "localhost:8080");
 
 # Virtual path. This directory MUST be different from the one used in $wgScriptPath
-$wgArticlePath = "/$customName/$1";    
-$wgUsePathInfo = true;
+#$wgArticlePath = "/$customName/$1";    
+#$wgUsePathInfo = true;
 
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.
 ## For more information on customizing the URLs
 ## (like /w/index.php/Page_title to /wiki/Page_title) please see:
 ## https://www.mediawiki.org/wiki/Manual:Short_URL
-$wgScriptPath = "";
+$wgScriptPath = "/$customName";
 
 
 ## The URL path to static resources (images, scripts, etc.)
